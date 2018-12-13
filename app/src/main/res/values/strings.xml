@@ -3,4 +3,9 @@
 
     <string name="something_went_wrong">Something went wrong at our end!</string>
     <string name="no_network">Seems you are not connected to internet!</string>
+    <string name="repo_details">Repo Details</string>
+    <string name="username">Username</string>
+    <string name="name">Name</string>
+    <string name="url">Url</string>
+    <string name="description">Description</string>
 </resources>

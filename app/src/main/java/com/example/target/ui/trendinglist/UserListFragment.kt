@@ -1,5 +1,6 @@
 package com.example.target.ui.trendinglist
 
+import android.arch.lifecycle.ViewModelProviders
 import android.os.Bundle
 import android.support.v4.app.Fragment
 import android.support.v7.widget.DividerItemDecoration
@@ -9,12 +10,13 @@ import android.view.View
 import android.view.ViewGroup
 import com.example.target.R
 import com.example.target.data.User
+import com.example.target.ui.main.UserViewModel
 import kotlinx.android.synthetic.main.fragment_user_list.*
 
-class UserListFragment : Fragment() {
-
+class UserListFragment : Fragment(), UserListAdapter.UserInterface {
     private lateinit var userListAdapter: UserListAdapter
     private lateinit var users: ArrayList<User>
+    private lateinit var userViewModel: UserViewModel
 
     companion object {
         var TAG = UserListFragment::class.java.canonicalName!!
@@ -33,6 +35,7 @@ class UserListFragment : Fragment() {
         super.onCreate(savedInstanceState)
 
         users = arguments?.getParcelableArrayList(ARG_USERS)!!
+        setupViewModel()
     }
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
@@ -46,9 +49,14 @@ class UserListFragment : Fragment() {
         setupAdapter()
     }
 
+    private fun setupViewModel() {
+        userViewModel = ViewModelProviders.of(activity!!).get(UserViewModel::class.java)
+    }
+
     private fun setupAdapter() {
         userListAdapter = context?.let { UserListAdapter(users) }!!
         list.adapter = userListAdapter
+        userListAdapter.setListener(this)
     }
 
     private fun setupLayoutManager() {
@@ -57,5 +65,9 @@ class UserListFragment : Fragment() {
         list.addItemDecoration(DividerItemDecoration(
             context,
                 DividerItemDecoration.VERTICAL))
+    }
+
+    override fun onUserClick(user: User) {
+        userViewModel.userLiveData.value = user
     }
 }

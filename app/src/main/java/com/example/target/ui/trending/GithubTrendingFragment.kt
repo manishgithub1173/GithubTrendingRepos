@@ -37,8 +37,9 @@ class GithubTrendingFragment : DaggerFragment() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        getViewModel()
+        setupViewModel()
         initObserver()
+        getTrendingUsers()
     }
 
     override fun onAttach(context: Context?) {
@@ -50,17 +51,11 @@ class GithubTrendingFragment : DaggerFragment() {
         return inflater.inflate(R.layout.fragment_github_trending, container, false)
     }
 
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        super.onViewCreated(view, savedInstanceState)
-
-        getTrendingUsers()
-    }
-
     private fun getTrendingUsers() {
         githubTrendingFragmentViewModel.getTrendingUsers()
     }
 
-    private fun getViewModel() {
+    private fun setupViewModel() {
         githubTrendingFragmentViewModel = ViewModelProviders.of(
             this,
             viewModelFactory).get(GithubTrendingFragmentViewModel::class.java

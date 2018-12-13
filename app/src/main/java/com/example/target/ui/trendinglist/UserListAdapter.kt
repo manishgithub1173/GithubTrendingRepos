@@ -14,7 +14,16 @@ import kotlinx.android.synthetic.main.item_user.view.*
 class UserListAdapter(data: ArrayList<User>)
     : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 
+    interface UserInterface {
+        fun onUserClick(user: User)
+    }
+
     private var users: ArrayList<User> = data
+    private lateinit var callback: UserInterface
+
+    fun setListener(userInterface: UserInterface) {
+        callback = userInterface
+    }
 
     override fun getItemCount(): Int {
         return users.size
@@ -34,6 +43,12 @@ class UserListAdapter(data: ArrayList<User>)
             .load(user.avatar)
             .thumbnail(0.1f)
             .into(userViewHolder.avatar)
+
+        holder.itemView?.setOnClickListener { onUserClick(user) }
+    }
+
+    private fun onUserClick(user: User) {
+        callback.onUserClick(user)
     }
 
     inner class UserViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {

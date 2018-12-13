@@ -10,3 +10,12 @@ fun addFragment(fragmentManager: FragmentManager, fragment: Fragment, frameId: I
     transaction.add(frameId, fragment, tag)
     transaction.commitAllowingStateLoss()
 }
+
+fun replaceFragmentWithBackStack(fragmentManager: FragmentManager, fragment: Fragment, frameId: Int, tag: String) {
+    checkNotNull(fragmentManager)
+    checkNotNull(fragment)
+    val transaction = fragmentManager.beginTransaction()
+    transaction.replace(frameId, fragment, tag)
+    transaction.addToBackStack(null)
+    transaction.commitAllowingStateLoss()
+}
