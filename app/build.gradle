@@ -21,11 +21,11 @@ android {
             postprocessing {
                 proguardFile 'proguard-rules.pro'
             }
-            buildConfigField 'String', 'BASE_URL_GITHUB_TRENDING', '"https://github-trending-api.now.sh/"'
+            buildConfigField 'String', 'BASE_URL', '"https://github-trending-api.now.sh/"'
         }
 
         debug {
-            buildConfigField 'String', 'BASE_URL_GITHUB_TRENDING', '"https://github-trending-api.now.sh/"'
+            buildConfigField 'String', 'BASE_URL', '"https://github-trending-api.now.sh/"'
         }
     }
 
