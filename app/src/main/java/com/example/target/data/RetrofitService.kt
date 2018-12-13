@@ -7,7 +7,7 @@ import retrofit2.http.Query
 
 interface RetrofitService {
     @GET("developers/")
-    fun getWeatherDetails(
+    fun getTrendingUsers(
         @Query("language") city: String,
         @Query("since") key: String
     ): Observable<Response<List<User>>>
