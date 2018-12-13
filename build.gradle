@@ -1,17 +1,90 @@
 // Top-level build file where you can add configuration options common to all sub-projects/modules.
 
 buildscript {
-    ext.kotlin_version = '1.2.50'
-    repositories {
-        google()
-        jcenter()
-    }
+
+    ext.versions = [
+            'compileSdk'       : 28,
+            'minSdk'           : 19,
+
+            'androidPlugin'    : '3.3.0-alpha05',
+            'archComp'         : '1.1.1',
+            'buildTools'       : '28.0.2',
+            'constraintLayout' : '1.1.2',
+            'dagger'           : '2.12',
+            'gson'             : '2.8.1',
+            'junit'            : '4.12',
+            'kotlin'           : '1.2.50',
+            'livedataTesting'  : '1.1.1',
+            'mockitoKotlin'    : '1.5.0',
+            'okhttp'           : '3.11.0',
+            'retrofit'         : '2.4.0',
+            'retrofitRxAdapter': '1.0.0',
+            'rxJava'           : '2.2.0',
+            'rxAndroid'        : '2.1.0',
+            'rxPermissions'    : '0.10.2',
+            'supportVersion'   : '27.1.1',
+            'playServices'     : '7.8.0',
+            'mockitoInline'    : '2.8.47',
+            'mockWebServer'    : '3.8.1',
+
+            'sourceCompat'     : JavaVersion.VERSION_1_8,
+            'targetCompat'     : JavaVersion.VERSION_1_8
+    ]
+
+
+    ext.deps = [
+            android: [
+                    'gradlePlugin'   : "com.android.tools.build:gradle:${versions.androidPlugin}",
+                    'lifecycleExt'   : "android.arch.lifecycle:extensions:${versions.archComp}",
+                    'lifecycleCommon': "android.arch.lifecycle:common-java8:${versions.archComp}",
+            ],
+            support: [
+                    'appCompat'        : "com.android.support:appcompat-v7:${versions.supportVersion}",
+                    'constraintLayout' : "com.android.support.constraint:constraint-layout:${versions.constraintLayout}",
+                    'designSupport'    : "com.android.support:design:${versions.supportVersion}",
+                    'support'          : "com.android.support:support-v4:${versions.supportVersion}",
+            ],
+            kotlin: [
+                    'gradlePlugin': "org.jetbrains.kotlin:kotlin-gradle-plugin:${versions.kotlin}",
+                    'stdlib'      : "org.jetbrains.kotlin:kotlin-stdlib-jdk7:${versions.kotlin}",
+            ],
+            reactivex: [
+                    'rxJava'        : "io.reactivex.rxjava2:rxjava:${versions.rxJava}",
+                    'rxAndroid'     : "io.reactivex.rxjava2:rxandroid:${versions.rxAndroid}",
+            ],
+            google: [
+                    'dagger'          : "com.google.dagger:dagger:${versions.dagger}",
+                    'daggerCompiler'  : "com.google.dagger:dagger-compiler:${versions.dagger}",
+                    'daggerProcessor' : "com.google.dagger:dagger-android-processor:${versions.dagger}",
+                    'daggerSupport'   : "com.google.dagger:dagger-android-support:${versions.dagger}",
+                    'gson'            : "com.google.code.gson:gson:${versions.gson}",
+            ],
+            square: [
+                    'gsonConverter'    : "com.squareup.retrofit2:converter-gson:${versions.retrofit}",
+                    'okhttp'           : "com.squareup.okhttp3:okhttp:${versions.okhttp}",
+                    'retrofit'         : "com.squareup.retrofit2:retrofit:${versions.retrofit}",
+                    'retrofitRxAdapter': "com.jakewharton.retrofit:retrofit2-rxjava2-adapter:${versions.retrofitRxAdapter}",
+            ],
+            test: [
+                    'junit'          : "junit:junit:${versions.junit}",
+                    'mockitoKotlin'  : "com.nhaarman:mockito-kotlin:${versions.mockitoKotlin}",
+                    'livedataTesting': "android.arch.core:core-testing:${versions.livedataTesting}",
+                    'mockitoInline'  : "org.mockito:mockito-inline:${versions.mockitoInline}",
+                    'mockWebServer'  : "com.squareup.okhttp3:mockwebserver:${versions.mockWebServer}"
+            ]
+    ]
+
     dependencies {
-        classpath 'com.android.tools.build:gradle:3.1.4'
-        classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version"
+        classpath deps.android.gradlePlugin
+        classpath deps.kotlin.gradlePlugin
 
         // NOTE: Do not place your application dependencies here; they belong
         // in the individual module build.gradle files
+    }
+
+    repositories {
+        google()
+        jcenter()
     }
 }
 
@@ -19,6 +92,7 @@ allprojects {
     repositories {
         google()
         jcenter()
+        maven { url 'https://jitpack.io' }
     }
 }
 
