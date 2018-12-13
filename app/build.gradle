@@ -75,6 +75,9 @@ dependencies {
     kapt deps.google.daggerCompiler
     implementation deps.google.gson
 
+    implementation deps.bumptech.glide
+    kapt deps.bumptech.glideCompiler
+
     implementation deps.square.retrofit
     implementation deps.square.okhttp
     implementation deps.square.gsonConverter
