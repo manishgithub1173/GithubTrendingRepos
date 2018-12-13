@@ -1,6 +1,5 @@
 package com.example.target.ui.main
 
-import android.Manifest
 import android.os.Bundle
 import com.example.target.R
 import dagger.android.AndroidInjection
