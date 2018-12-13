@@ -16,6 +16,7 @@ import java.net.UnknownHostException
 import javax.inject.Inject
 import com.example.target.R
 import com.example.target.data.User
+import com.example.target.ui.trendinglist.UserListFragment
 import kotlinx.android.synthetic.main.fragment_github_trending.*
 import java.io.IOException
 
@@ -126,8 +127,8 @@ class GithubTrendingFragment : DaggerFragment() {
         )
         fragmentTransaction.add(
             R.id.trendingRepoContainer,
-            GithubTrendingFragment.newInstance(),
-            GithubTrendingFragment.TAG
+            UserListFragment.newInstance(users as ArrayList<User>),
+            UserListFragment.TAG
         )
         fragmentTransaction.commit()
     }

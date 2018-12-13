@@ -2,6 +2,7 @@ package com.example.target.di
 
 import com.example.target.MainApplication
 import com.example.target.di.viewmodel.ViewModelModule
+import com.example.target.repository.AppRepositoryModule
 import dagger.Component
 import dagger.android.AndroidInjector
 import dagger.android.support.AndroidSupportInjectionModule
@@ -13,6 +14,7 @@ import javax.inject.Singleton
     AndroidSupportInjectionModule::class,
     AppModule::class,
     ViewModelModule::class,
+    AppRepositoryModule::class,
     ActivityBindingModule::class])
 interface AppComponent : AndroidInjector<MainApplication> {
     @Component.Builder
