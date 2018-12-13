@@ -1,3 +1,8 @@
 <resources>
     <string name="app_name">TargetGithub</string>
+
+    <string name="something_went_wrong">Something went wrong at our end!</string>
+    <string name="no_network">Seems you are not connected to internet!</string>
+    <string name="retry">RETRY</string>
+    <string name="button_ok">OK</string>
 </resources>
