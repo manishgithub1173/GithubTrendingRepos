@@ -19,7 +19,7 @@ internal abstract class GithubTrendingFragmentModule {
     @Binds
     @IntoMap
     @ViewModelKey(GithubTrendingFragmentViewModel::class)
-    abstract fun bindWeatherFragmentViewModel(
+    abstract fun bindGithubTrendingFragmentViewModel(
         githubTrendingFragmentViewModel: GithubTrendingFragmentViewModel
     ): ViewModel
 }

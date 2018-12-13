@@ -96,6 +96,7 @@ class GithubTrendingFragment : DaggerFragment() {
     }
 
     private fun onSuccess(users: List<User>) {
+        showUsers(users)
     }
 
     private fun onError(throwable: Throwable?) {
