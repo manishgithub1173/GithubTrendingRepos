@@ -8,10 +8,18 @@ name, username and user avatar.
 show “all the details” for that particular repository. Eg.
 
 Username - google
+
 name - Google
+
 url - https://github.com/google
-avatar - &lt;Show avatar Image&gt;
+
+avatar - Show avatar Image
+
+
 repo details
+
 name - guava
+
 Description - Google core libraries for Java
+
 url - https://github.com/google/guava
