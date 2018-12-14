@@ -2,7 +2,6 @@ package com.example.target.ui.trending
 
 import android.arch.lifecycle.MutableLiveData
 import android.arch.lifecycle.ViewModel
-import com.example.target.common.Constants
 import com.example.target.data.User
 import com.example.target.repository.AppRepository
 import io.reactivex.android.schedulers.AndroidSchedulers
@@ -32,9 +31,9 @@ class GithubTrendingFragmentViewModel @Inject constructor (private var appReposi
         return errorLiveData
     }
 
-    fun getTrendingUsers() {
+    fun getTrendingUsers(language: String, since: String) {
         try {
-            compositeDisposable.add(appRepository.getTrendingUsers(Constants.LANGUAGE, Constants.SINCE)
+            compositeDisposable.add(appRepository.getTrendingUsers(language, since)
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .doOnSubscribe { onAPIStart() }

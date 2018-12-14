@@ -15,6 +15,8 @@ import java.net.ConnectException
 import java.net.UnknownHostException
 import javax.inject.Inject
 import com.example.target.R
+import com.example.target.common.Constants
+import com.example.target.common.EspressoIdlingResource
 import com.example.target.data.User
 import com.example.target.ui.trendinglist.UserListFragment
 import kotlinx.android.synthetic.main.fragment_github_trending.*
@@ -52,7 +54,8 @@ class GithubTrendingFragment : DaggerFragment() {
     }
 
     private fun getTrendingUsers() {
-        githubTrendingFragmentViewModel.getTrendingUsers()
+        EspressoIdlingResource.increment()
+        githubTrendingFragmentViewModel.getTrendingUsers(Constants.LANGUAGE, Constants.SINCE)
     }
 
     private fun setupViewModel() {
@@ -93,6 +96,7 @@ class GithubTrendingFragment : DaggerFragment() {
 
     private fun onSuccess(users: List<User>) {
         showUsers(users)
+        EspressoIdlingResource.decrement()
     }
 
     private fun onError(throwable: Throwable?) {
@@ -111,15 +115,12 @@ class GithubTrendingFragment : DaggerFragment() {
                 errorMessage = getString(R.string.no_network)
             }
         }
+        EspressoIdlingResource.decrement()
     }
 
     private fun showUsers(users: List<User>) {
         val fragmentManager = childFragmentManager
         val fragmentTransaction = fragmentManager.beginTransaction()
-        fragmentTransaction.setCustomAnimations(
-            R.anim.slide_up,
-            R.anim.slide_down
-        )
         fragmentTransaction.add(
             R.id.trendingRepoContainer,
             UserListFragment.newInstance(users as ArrayList<User>),
