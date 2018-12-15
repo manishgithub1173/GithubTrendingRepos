@@ -18,11 +18,12 @@ import com.example.target.R
 import com.example.target.common.Constants
 import com.example.target.common.EspressoIdlingResource
 import com.example.target.data.User
+import com.example.target.ui.core.ErrorView
 import com.example.target.ui.trendinglist.UserListFragment
 import kotlinx.android.synthetic.main.fragment_github_trending.*
 import java.io.IOException
 
-class GithubTrendingFragment : DaggerFragment() {
+class GithubTrendingFragment : DaggerFragment(), ErrorView.ErrorListener {
 
     @Inject
     lateinit var viewModelFactory: ViewModelProvider.Factory
@@ -51,6 +52,12 @@ class GithubTrendingFragment : DaggerFragment() {
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         return inflater.inflate(R.layout.fragment_github_trending, container, false)
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+
+        errorView.setListener(this)
     }
 
     private fun getTrendingUsers() {
@@ -115,6 +122,8 @@ class GithubTrendingFragment : DaggerFragment() {
                 errorMessage = getString(R.string.no_network)
             }
         }
+        errorView.visibility = View.VISIBLE
+        errorView.setErrorMessage(errorMessage)
         EspressoIdlingResource.decrement()
     }
 
@@ -127,5 +136,10 @@ class GithubTrendingFragment : DaggerFragment() {
             UserListFragment.TAG
         )
         fragmentTransaction.commit()
+    }
+
+    override fun onRetry() {
+        errorView.visibility = View.GONE
+        getTrendingUsers()
     }
 }

@@ -8,4 +8,5 @@
     <string name="name">Name</string>
     <string name="url">Url</string>
     <string name="description">Description</string>
+    <string name="retry">Retry</string>
 </resources>
