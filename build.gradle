@@ -27,6 +27,8 @@ buildscript {
             'playServices'     : '7.8.0',
             'mockitoInline'    : '2.8.47',
             'mockWebServer'    : '3.8.1',
+            'espresso'         : '3.0.2',
+            'testRunner'       : '1.0.2',
 
             'sourceCompat'     : JavaVersion.VERSION_1_8,
             'targetCompat'     : JavaVersion.VERSION_1_8
@@ -71,11 +73,18 @@ buildscript {
                     'retrofitRxAdapter': "com.jakewharton.retrofit:retrofit2-rxjava2-adapter:${versions.retrofitRxAdapter}",
             ],
             test: [
-                    'junit'          : "junit:junit:${versions.junit}",
-                    'mockitoKotlin'  : "com.nhaarman:mockito-kotlin:${versions.mockitoKotlin}",
-                    'livedataTesting': "android.arch.core:core-testing:${versions.livedataTesting}",
-                    'mockitoInline'  : "org.mockito:mockito-inline:${versions.mockitoInline}",
-                    'mockWebServer'  : "com.squareup.okhttp3:mockwebserver:${versions.mockWebServer}"
+                    'junit'             : "junit:junit:${versions.junit}",
+                    'mockitoKotlin'     : "com.nhaarman:mockito-kotlin:${versions.mockitoKotlin}",
+                    'livedataTesting'   : "android.arch.core:core-testing:${versions.livedataTesting}",
+                    'mockitoInline'     : "org.mockito:mockito-inline:${versions.mockitoInline}",
+                    'mockWebServer'  : "com.squareup.okhttp3:mockwebserver:${versions.mockWebServer}",
+                    'espressoCore'      : "com.android.support.test.espresso:espresso-core:${versions.espresso}",
+                    'idlingResource'    : "com.android.support.test.espresso:espresso-idling-resource:${versions.espresso}",
+                    'espressoContrib'   : "com.android.support.test.espresso:espresso-contrib:${versions.espresso}",
+                    'espressoIntents'   : "com.android.support.test.espresso:espresso-intents:${versions.espresso}",
+                    'idlingConcurrent'  : "com.android.support.test.espresso.idling:idling-concurrent:${versions.espresso}",
+                    'testRunner'        : "com.android.support.test:runner:${versions.testRunner}",
+                    'testRules'         : "com.android.support.test:rules:${versions.testRunner}",
             ]
     ]
 

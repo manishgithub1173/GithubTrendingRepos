@@ -57,15 +57,6 @@ configurations {
 dependencies {
     implementation fileTree(include: ['*.jar'], dir: 'libs')
 
-    androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.2'
-    androidTestImplementation 'com.android.support.test:runner:1.0.2'
-    androidTestImplementation 'com.android.support.test:rules:1.0.2'
-    implementation 'com.android.support.test.espresso:espresso-idling-resource:3.0.2'
-    androidTestImplementation "com.android.support.test.espresso:espresso-core:3.0.2"
-    androidTestImplementation "com.android.support.test.espresso:espresso-contrib:3.0.2"
-    androidTestImplementation "com.android.support.test.espresso:espresso-intents:3.0.2"
-    androidTestImplementation "com.android.support.test.espresso.idling:idling-concurrent:3.0.2"
-
     implementation deps.support.appCompat
     implementation deps.support.support
     implementation deps.support.designSupport
@@ -96,6 +87,8 @@ dependencies {
 
 //tests related dependencies
 dependencies {
+    implementation deps.test.idlingResource
+
     testImplementation deps.test.junit
     testImplementation deps.test.livedataTesting
     testImplementation deps.test.mockitoInline
@@ -104,6 +97,12 @@ dependencies {
     androidTestImplementation deps.test.junit
     androidTestImplementation deps.test.mockitoKotlin
     androidTestImplementation deps.test.livedataTesting
+    androidTestImplementation deps.test.espressoCore
+    androidTestImplementation deps.test.espressoContrib
+    androidTestImplementation deps.test.espressoIntents
+    androidTestImplementation deps.test.idlingConcurrent
+    androidTestImplementation deps.test.testRunner
+    androidTestImplementation deps.test.testRules
 }
 
 dependencies {
